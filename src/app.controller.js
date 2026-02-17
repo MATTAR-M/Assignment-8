@@ -3,6 +3,7 @@ import chechConnection from './DB/conncectionDB.js'
 import userModel from './DB/models/user.model.js'
 import noteModel from './DB/models/notes.model.js'
 import userRouter from './mods/users/user.controller.js'
+import noteRouter from './mods/note/note.controller.js'
 const app = express()
 const port = 3000
 
@@ -12,6 +13,7 @@ const bootstrap = async()=>{
     chechConnection()
     userModel
     noteModel
+    app.use('/notes',noteRouter)
     app.use('/users',userRouter)
     app.get('/', (req, res) => res.send('Hello World!'))
     app.use("{/*demo}",(req,res,next)=>{
